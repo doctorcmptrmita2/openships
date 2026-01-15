@@ -4,6 +4,8 @@ import { ArrowRight, Grid3X3 } from 'lucide-react'
 import { Header } from '@/components/ui/Header'
 import { Footer } from '@/components/ui/Footer'
 
+export const dynamic = 'force-dynamic'
+
 async function getCategories() {
   return await db.category.findMany({
     include: { _count: { select: { products: true } } },

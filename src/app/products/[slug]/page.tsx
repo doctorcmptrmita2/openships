@@ -6,6 +6,8 @@ import { Header } from '@/components/ui/Header'
 import { Footer } from '@/components/ui/Footer'
 import { UpvoteButton } from '@/components/products/UpvoteButton'
 
+export const dynamic = 'force-dynamic'
+
 async function getProduct(slug: string) {
   return await db.product.findUnique({
     where: { slug },

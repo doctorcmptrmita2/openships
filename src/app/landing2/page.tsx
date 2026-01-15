@@ -25,6 +25,8 @@ import {
 } from 'lucide-react'
 import { UpvoteButton } from '@/components/products/UpvoteButton'
 
+export const dynamic = 'force-dynamic'
+
 async function getProducts() {
   return await db.product.findMany({
     where: { status: 'APPROVED' },

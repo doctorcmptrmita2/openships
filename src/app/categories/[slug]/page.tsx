@@ -6,6 +6,8 @@ import { Header } from '@/components/ui/Header'
 import { Footer } from '@/components/ui/Footer'
 import { ProductCard } from '@/components/products/ProductCard'
 
+export const dynamic = 'force-dynamic'
+
 async function getCategory(slug: string) {
   return await db.category.findUnique({
     where: { slug },
