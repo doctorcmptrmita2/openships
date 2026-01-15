@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+
 // Mock user ID - in real app this would come from auth session
 const MOCK_USER_ID = 'user-1'
 
