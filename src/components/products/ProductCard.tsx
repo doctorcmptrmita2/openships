@@ -12,11 +12,12 @@ interface ProductCardProps {
     tagline: string
     logo?: string | null
     website: string
-    isVerified: boolean
+    isVerified?: boolean
     category?: { name: string } | null
-    _count: { upvotes: number; comments: number }
+    _count?: { upvotes: number; comments: number }
   }
   rank?: number
+  isTrending?: boolean
 }
 
 export function ProductCard({ product, rank }: ProductCardProps) {
@@ -57,13 +58,13 @@ export function ProductCard({ product, rank }: ProductCardProps) {
             </span>
             <span className="text-xs text-gray-400 flex items-center gap-1">
               <MessageCircle className="w-3 h-3" />
-              {product._count.comments}
+              {product._count?.comments || 0}
             </span>
           </div>
         </div>
 
         {/* Upvote */}
-        <UpvoteButton productId={product.id} initialCount={product._count.upvotes} />
+        <UpvoteButton productId={product.id} initialCount={product._count?.upvotes || 0} />
       </div>
     </div>
   )
