@@ -1,0 +1,121 @@
+'use client'
+
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
+
+interface LogoProps {
+  size?: 'sm' | 'md' | 'lg'
+  showText?: boolean
+  className?: string
+}
+
+export function Logo({ size = 'md', showText = true, className }: LogoProps) {
+  const sizes = {
+    sm: { icon: 28, text: 'text-lg' },
+    md: { icon: 36, text: 'text-xl' },
+    lg: { icon: 48, text: 'text-2xl' },
+  }
+
+  const { icon, text } = sizes[size]
+
+  return (
+    <Link href="/" className={cn("flex items-center gap-2.5", className)}>
+      {/* Logo Icon - Rocket Ship with Portal/Ring */}
+      <div className="relative">
+        <svg
+          width={icon}
+          height={icon}
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Gradient Definitions */}
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FF6B35" />
+              <stop offset="50%" stopColor="#F7931E" />
+              <stop offset="100%" stopColor="#FF4E50" />
+            </linearGradient>
+            <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FFFFFF" />
+              <stop offset="100%" stopColor="#F0F0F0" />
+            </linearGradient>
+            <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FFD93D" />
+              <stop offset="50%" stopColor="#FF6B35" />
+              <stop offset="100%" stopColor="#FF4E50" />
+            </linearGradient>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Background Circle/Portal */}
+          <circle cx="24" cy="24" r="22" fill="url(#logoGradient)" />
+          
+          {/* Inner Ring Effect */}
+          <circle cx="24" cy="24" r="18" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+          
+          {/* Rocket Body */}
+          <g filter="url(#glow)">
+            {/* Main Rocket Body */}
+            <path
+              d="M24 8C24 8 18 16 18 26C18 30 20 33 24 33C28 33 30 30 30 26C30 16 24 8 24 8Z"
+              fill="url(#rocketGradient)"
+              stroke="rgba(0,0,0,0.1)"
+              strokeWidth="0.5"
+            />
+            
+            {/* Rocket Window */}
+            <circle cx="24" cy="20" r="3.5" fill="#1E3A5F" />
+            <circle cx="24" cy="19.5" r="2" fill="#4A90D9" opacity="0.6" />
+            
+            {/* Left Fin */}
+            <path
+              d="M18 28L14 32L18 30Z"
+              fill="url(#rocketGradient)"
+              stroke="rgba(0,0,0,0.1)"
+              strokeWidth="0.5"
+            />
+            
+            {/* Right Fin */}
+            <path
+              d="M30 28L34 32L30 30Z"
+              fill="url(#rocketGradient)"
+              stroke="rgba(0,0,0,0.1)"
+              strokeWidth="0.5"
+            />
+          </g>
+
+          {/* Rocket Flame */}
+          <path
+            d="M21 33C21 33 22 38 24 40C26 38 27 33 27 33C27 33 25.5 35 24 35C22.5 35 21 33 21 33Z"
+            fill="url(#flameGradient)"
+          />
+          
+          {/* Small flame particles */}
+          <circle cx="22" cy="37" r="1" fill="#FFD93D" opacity="0.8" />
+          <circle cx="26" cy="36" r="0.8" fill="#FFD93D" opacity="0.6" />
+          
+          {/* Speed Lines / Stars */}
+          <circle cx="12" cy="14" r="1" fill="white" opacity="0.8" />
+          <circle cx="36" cy="18" r="0.8" fill="white" opacity="0.6" />
+          <circle cx="10" cy="28" r="0.6" fill="white" opacity="0.5" />
+          <circle cx="38" cy="30" r="0.7" fill="white" opacity="0.7" />
+        </svg>
+      </div>
+
+      {/* Text */}
+      {showText && (
+        <span className={cn("font-bold tracking-tight", text)}>
+          <span className="text-gray-900">Open</span>
+          <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">Ship</span>
+        </span>
+      )}
+    </Link>
+  )
+}
